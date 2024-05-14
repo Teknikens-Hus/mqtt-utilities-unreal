@@ -155,6 +155,13 @@ public class MqttUtilities : ModuleRules
             PublicAdditionalLibraries.Add(Path.Combine(LibrariesPath, libname + StaticLibExtension));
         }
 
+        // If Linux
+        if(Target.Platform == UnrealTargetPlatform.Linux)
+        {
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libssl.a");
+            PublicAdditionalLibraries.Add("/usr/lib/x86_64-linux-gnu/libcrypto.a");
+        }
+
         // Copy dynamic library to Binaries folder
 
         if (!Directory.Exists(BinariesPath))
